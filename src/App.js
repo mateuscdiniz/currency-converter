@@ -1,4 +1,4 @@
-import Currency from './components/Currency';
+import Currency from './components/Currency/Currency';
 
 function App() {
   return <Currency />;

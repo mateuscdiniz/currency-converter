@@ -3,7 +3,19 @@ import Axios from 'axios';
 import Dropdown from 'react-dropdown';
 import { HiSwitchHorizontal } from 'react-icons/hi';
 import 'react-dropdown/style.css';
-import './Currency.css';
+// import './Currency.css';
+import {
+  App,
+  Button,
+  Container,
+  From,
+  Heading,
+  Input,
+  Result,
+  Switch,
+  TextStyled,
+  To,
+} from './Currency.styled';
 
 function Currency() {
   const [info, setInfo] = useState([]);
@@ -38,20 +50,20 @@ function Currency() {
   }
 
   return (
-    <div className="App">
-      <div className="heading">
+    <App>
+      <Heading>
         <h1>Currency converter</h1>
-      </div>
-      <div className="container">
+      </Heading>
+      <Container>
         <div className="left">
           <h3>Amount</h3>
-          <input
+          <Input
             type="text"
             placeholder="Enter the amount"
             onChange={(e) => setInput(e.target.value)}
           />
         </div>
-        <div className="middle">
+        <From>
           <h3>From</h3>
           <Dropdown
             options={options}
@@ -61,17 +73,17 @@ function Currency() {
             value={from}
             placeholder="From"
           />
-        </div>
-        <div className="switch">
+        </From>
+        <Switch>
           <HiSwitchHorizontal
             size="30px"
             onClick={() => {
               flip();
             }}
           />
-        </div>
+        </Switch>
 
-        <div className="right">
+        <To>
           <h3>To</h3>
           <Dropdown
             options={options}
@@ -81,18 +93,18 @@ function Currency() {
             value={to}
             placeholder="To"
           />
-        </div>
-      </div>
-      <div className="result">
-        <button
+        </To>
+      </Container>
+      <Result>
+        <Button
           onClick={() => {
             convert();
           }}
         >
           Convert
-        </button>
+        </Button>
 
-        <p>
+        <TextStyled>
           {input +
             ' ' +
             from.toUpperCase() +
@@ -100,9 +112,9 @@ function Currency() {
             output.toFixed(2) +
             ' ' +
             to.toUpperCase()}
-        </p>
-      </div>
-    </div>
+        </TextStyled>
+      </Result>
+    </App>
   );
 }
 
