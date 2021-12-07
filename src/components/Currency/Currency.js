@@ -20,8 +20,8 @@ import {
 function Currency() {
   const [info, setInfo] = useState([]);
   const [input, setInput] = useState(0);
-  const [from, setFrom] = useState('');
-  const [to, setTo] = useState('');
+  const [from, setFrom] = useState('BRL');
+  const [to, setTo] = useState('USD');
   const [options, setOptions] = useState(['EUR', 'BRL', 'USD']);
   const [output, setOutput] = useState(0);
 
