@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Dropdown from 'react-dropdown';
 import { HiSwitchHorizontal } from 'react-icons/hi';
 import 'react-dropdown/style.css';
-// import './Currency.css';
+
 import {
   App,
   Button,
@@ -20,16 +20,16 @@ import {
 function Currency() {
   const [info, setInfo] = useState([]);
   const [input, setInput] = useState(0);
-  const [from, setFrom] = useState('usd');
-  const [to, setTo] = useState('brl');
-  const [options, setOptions] = useState([]);
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
+  const [options, setOptions] = useState(['EUR', 'BRL', 'USD']);
   const [output, setOutput] = useState(0);
 
   useEffect(() => {
     Axios.get(
-      `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${from}.json`
+      `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.REACT_APP_ACCESS_KEY}&symbols=USD,BRL,EUR&format=1`
     ).then((res) => {
-      setInfo(res.data[from]);
+      setInfo(res.data.rates);
     });
   }, [from]);
 
@@ -41,6 +41,7 @@ function Currency() {
   function convert() {
     var rate = info[to];
     setOutput(input * rate);
+    console.log(info[to]);
   }
 
   function flip() {
