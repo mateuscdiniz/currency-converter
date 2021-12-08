@@ -67,3 +67,8 @@ export const TextStyled = styled.p({
   fontSize: '30px',
   color: 'green',
 });
+
+export const DateStyled = styled.div({
+  fontSize: '20px',
+  color: 'black',
+});

@@ -15,10 +15,13 @@ import {
   Switch,
   TextStyled,
   To,
+  DateStyled,
 } from './Currency.styled';
 
 function Currency() {
-  const [info, setInfo] = useState([]);
+  const [info, setInfo] = useState('');
+  const [date, setDate] = useState('');
+
   const [input, setInput] = useState(0);
   const [from, setFrom] = useState('BRL');
   const [to, setTo] = useState('USD');
@@ -41,13 +44,30 @@ function Currency() {
   function convert() {
     var rate = info[to];
     setOutput(input * rate);
-    console.log(info[to]);
+    formatDateTime();
   }
 
   function flip() {
     var temp = from;
     setFrom(to);
     setTo(temp);
+  }
+
+  function formatDateTime() {
+    let data = new Date();
+    let dataFormatada =
+      data.getDate() +
+      '/' +
+      (data.getMonth() + 1) +
+      '/' +
+      data.getFullYear() +
+      ' - ' +
+      data.getHours() +
+      ':' +
+      data.getMinutes() +
+      ':' +
+      data.getSeconds();
+    setDate(dataFormatada);
   }
 
   return (
@@ -114,6 +134,7 @@ function Currency() {
             ' ' +
             to.toUpperCase()}
         </TextStyled>
+        <DateStyled>Date: {date}</DateStyled>
       </Result>
     </App>
   );
